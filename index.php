@@ -13,7 +13,7 @@
 	<header>
 		<h1>Canvas Dash</h1>
 		<!-- Welcome, {user} -->
-		<h2>Welcome, Rosemary</h2>
+		<?php echo get_self(); ?>
 		<nav>
 			<button id="settings">Settings</button>
 			<button id="log_out">Log Out</button>
@@ -24,12 +24,12 @@
 		<div class="container" id="all_course_updates">
 			<!-- Container for recent feedback for ALL courses -->
 			<!-- Container for upcoming assignments in ALL courses -->
-		</div>
 
 		<section class="container" id="all_courses">
 			<h2>Your Courses</h2>
 			<div id="course_button_wrapper">
 				<!-- Buttons for each course -->
+				<?php echo get_courses(); ?>
 			</div>
 			<div class="container" id="single_course_updates">
 				<!-- Container for recent feedback for selected course -->

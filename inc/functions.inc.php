@@ -1,5 +1,6 @@
 <?php 
 //Author: Rosemary Perkins
+require 'connect.inc.php';
 $canvas_site = "https://clarkcollege.instructure.com/api/v1";
 
 function call_api($method, $url, $data = false){
@@ -23,7 +24,8 @@ function get_self() {
 	$url = $canvas_site . "/users/self?access_token=" . $access_token;
 	$data = call_api("GET",$url);
 	$data = json_decode($data);
-	echo "<h3>Name: " . $data->name . "</h3>";
+	$output = "<h2>Welcome, " . $data->name . "</h2>";
+	return $output;
 }
 
 function get_courses() {
@@ -36,9 +38,8 @@ function get_courses() {
 	$output = "";
 	for ($i=0; $i<count($data); $i++) {
 		if (!property_exists($data[$i], "access_restricted_by_date")) {
-			$output .= "<option value=\"" . $data[$i]->id . "\">";
+			$output .= "<input type=\"radio\" name=\"courses\" value=\"" . $data[$i]->id . "\">";
 			$output .= $data[$i]->name;
-			$output .= "</option>";
 		} else {
 
 		}

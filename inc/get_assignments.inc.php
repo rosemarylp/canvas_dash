@@ -1,5 +1,5 @@
 <?php 
-
+require 'connect.inc.php';
 require_once 'functions.inc.php';
 
 if (isset($_GET["course"])) {
