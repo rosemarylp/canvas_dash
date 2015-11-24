@@ -1,3 +1,4 @@
+<?php require 'inc/functions.inc.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Author: Rosemary Perkins -->
