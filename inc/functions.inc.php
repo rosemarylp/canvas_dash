@@ -34,8 +34,32 @@ function get_activity() {
 	$url = $canvas_site . "/users/self/activity_stream?access_token=" . $access_token;
 	$data = call_api("GET",$url);
 	$data = json_decode($data);
-	print_r($data);
-	echo $url;
+	$output = "";
+
+	$output .= "<section>";
+	$output .= "<h2>Recent Updates</h2>";
+	for ($i=0; $i<count($data); $i++) {
+		if ($data[$i]->type == "Submission") {
+			$output .= "<section>";
+			//Clickable title of assignment
+			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a><h3>";
+			//Output comment
+			if (property_exists($data[$i], "submission_comments")) {
+				if (count($data[$i]->submission_comments) > 0) {
+					for ($j=0; $j<count($data[$i]->submission_comments); $j++) {
+						$output .= "<p>" . $data[$i]->submission_comments[$j]->comment . "</p>";
+					}
+				}
+			}
+			//Output score and total points possible
+			if (property_exists($data[$i], "score")) {
+				$output .= "<p>Score: " . $data[$i]->score . "/" . $data[$i]->assignment->points_possible . "</p>";
+			}
+			$output .= "</section>";
+		}
+	}
+	$output .= "</section>";
+	return $output;
 }
 
 function get_courses() {
