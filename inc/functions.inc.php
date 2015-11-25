@@ -28,6 +28,16 @@ function get_self() {
 	return $output;
 }
 
+function get_activity() {
+	global $canvas_site;
+	global $access_token;
+	$url = $canvas_site . "/users/self/activity_stream?access_token=" . $access_token;
+	$data = call_api("GET",$url);
+	$data = json_decode($data);
+	print_r($data);
+	echo $url;
+}
+
 function get_courses() {
 	global $canvas_site;
 	global $access_token;

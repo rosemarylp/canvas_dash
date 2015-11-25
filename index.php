@@ -22,8 +22,10 @@
 
 	<main>
 		<div class="container" id="all_course_updates">
+			<?php get_activity(); ?>
 			<!-- Container for recent feedback for ALL courses -->
 			<!-- Container for upcoming assignments in ALL courses -->
+		</div>
 
 		<section class="container" id="all_courses">
 			<h2>Your Courses</h2>
