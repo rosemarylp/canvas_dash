@@ -103,9 +103,16 @@ function get_courses() {
 	return $output;
 }
 
+function get_course_activity($course, $canvas_site, $access_token) {
+	$url = $canvas_site . "/" . "courses/" . $course . "/activity_stream?access_token=" . $access_token;
+	$data = call_api("GET", $url);
+	print_r($data);
+	echo $url;
+}
+
 function get_course_upcoming($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/todo?access_token=" . $access_token;
-	$data = call_api("GET",$url);
+	$data = call_api("GET", $url);
 	$data = json_decode($data);
 	$output = "";
 	$output .= "<section>";
