@@ -7,7 +7,8 @@ if (isset($_GET["course"])) {
 	global $canvas_site;
 	global $access_token;
 
-	get_assignments($course, $canvas_site, $access_token);
+	// get_assignments($course, $canvas_site, $access_token);
+	get_course_upcoming($course, $canvas_site, $access_token);
 }
 
  ?>

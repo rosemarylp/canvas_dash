@@ -27,7 +27,7 @@ function get_self() {
 	return $output;
 }
 
-function get_activity() {
+function get_all_activity() {
 	global $canvas_site;
 	global $access_token;
 	$url = $canvas_site . "/users/self/activity_stream?access_token=" . $access_token;
@@ -61,7 +61,7 @@ function get_activity() {
 	return $output;
 }
 
-function get_upcoming() {
+function get_all_upcoming() {
 	global $canvas_site;
 	global $access_token;
 	$url = $canvas_site . "/users/self/upcoming_events?access_token=" . $access_token;
@@ -101,6 +101,25 @@ function get_courses() {
 		}
 	}
 	return $output;
+}
+
+function get_course_upcoming($course, $canvas_site, $access_token) {
+	$url = $canvas_site . "/" . "courses/" . $course . "/todo?access_token=" . $access_token;
+	$data = call_api("GET",$url);
+	$data = json_decode($data);
+	$output = "";
+	$output .= "<section>";
+	$output .= "<h2>Upcoming Assignments</h2>";
+	for ($i=0; $i<count($data); $i++) {
+		$output .= "<section>";
+		$output .= "<h3><a href=\"" . $data[$i]->assignment->html_url . "\">";
+		$output .= $data[$i]->assignment->name . "</a></h3>";
+		$output .= "<h4>Due: " . $data[$i]->assignment->due_at . "</h4>";
+		$output .= "</section>";
+	}
+	$output .= "</section>";
+
+	echo $output;
 }
 
 function get_assignments($course, $canvas_site, $access_token) {
