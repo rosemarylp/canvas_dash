@@ -65,15 +65,15 @@ function get_activity() {
 function get_courses() {
 	global $canvas_site;
 	global $access_token;
-	$url = $canvas_site . "/courses?access_token=" . $access_token;
+	$url = $canvas_site . "/courses?include=total_scores&access_token=" . $access_token;
 	$data = call_api("GET",$url);
 	$data = json_decode($data);
-
 	$output = "";
 	for ($i=0; $i<count($data); $i++) {
 		if (!property_exists($data[$i], "access_restricted_by_date")) {
 			$output .= "<input type=\"radio\" name=\"courses\" value=\"" . $data[$i]->id . "\">";
 			$output .= $data[$i]->name;
+			$output .= " (" . $data[$i]->enrollments[0]->computed_current_score . "%)";
 		} else {
 
 		}
