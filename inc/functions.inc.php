@@ -5,7 +5,6 @@ $canvas_site = "https://clarkcollege.instructure.com/api/v1";
 
 function call_api($method, $url, $data = false){
 	//Author: Bruce Elgort
-
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -62,6 +61,31 @@ function get_activity() {
 	return $output;
 }
 
+function get_upcoming() {
+	global $canvas_site;
+	global $access_token;
+	$url = $canvas_site . "/users/self/upcoming_events?access_token=" . $access_token;
+	$data = call_api("GET", $url);
+	$data = json_decode($data);
+	$output = "";
+	$output .= "<section>";
+	$output .= "<h2>Upcoming Assignments</h2>";
+	for ($i=0; $i<count($data); $i++) {
+		$output .= "<section>";
+		$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">";
+		$output .= $data[$i]->title;
+		$output .= "</a></h3>";
+
+		$output .= "<p>" . $data[$i]->assignment->description . "</p>";
+
+		$output .= "<h4>Due: " . $data[$i]->assignment->due_at . "</h4>";
+		$output .= "</section>";
+	}
+	$output .= "</section>";
+
+	return $output;
+}
+
 function get_courses() {
 	global $canvas_site;
 	global $access_token;
@@ -74,8 +98,6 @@ function get_courses() {
 			$output .= "<input type=\"radio\" name=\"courses\" value=\"" . $data[$i]->id . "\">";
 			$output .= $data[$i]->name;
 			$output .= " (" . $data[$i]->enrollments[0]->computed_current_score . "%)";
-		} else {
-
 		}
 	}
 	return $output;

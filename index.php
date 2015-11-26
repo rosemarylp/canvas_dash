@@ -22,7 +22,8 @@
 
 	<main>
 		<div class="container" id="all_course_updates">
-			<?php echo get_activity(); ?>
+			<?php //echo get_activity(); ?>
+			<?php echo get_upcoming(); ?>
 			<!-- Container for recent feedback for ALL courses -->
 			<!-- Container for upcoming assignments in ALL courses -->
 		</div>
