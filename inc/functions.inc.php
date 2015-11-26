@@ -38,7 +38,7 @@ function get_all_activity() {
 	$output .= "<section>";
 	$output .= "<h2>Recent Updates</h2>";
 	for ($i=0; $i<count($data); $i++) {
-		if ($data[$i]->type == "Submission") {
+		if ($data[$i]->type == "Submission" || $data[$i]->type == "DiscussionTopic") {
 			$output .= "<section>";
 			//Clickable title of assignment
 			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a><h3>";
