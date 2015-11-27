@@ -38,8 +38,9 @@ $('document').ready(function() {
 
 	$("input:radio[name=courses]").change(function() {
 		var course = $(this).val();
-		get_course_info(course);
+		// get_course_info(course);
 		// get_course_assignments(course);
-		get_course_discussions(course);
+		// get_course_discussions(course);
+		get_course_quizzes(course);
 	});
 });

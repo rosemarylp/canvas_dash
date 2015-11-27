@@ -14,6 +14,7 @@ function call_api($method, $url, $data = false){
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($curl);
     curl_close($curl);
+    // -----ADD LINE to json_decode $result----
     return $result;
 } // end call_api
 
@@ -143,6 +144,14 @@ function get_discussions($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/discussion_topics?access_token=" . $access_token;
 	$data = call_api("GET", $url);
 	$data = json_decode($data);
+	echo "<pre>" . print_r($data) . "</pre>";
+}
+
+function get_quizzes($course, $canvas_site, $access_token) {
+	$url = $canvas_site . "/" . "courses/" . $course . "/quizzes?access_token=" . $access_token;
+	$data = call_api("GET", $url);
+	$data = json_decode($data);
+	echo $url . "<br>";
 	echo "<pre>" . print_r($data) . "</pre>";
 }
 
