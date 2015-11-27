@@ -106,8 +106,9 @@ function get_courses() {
 function get_course_activity($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/activity_stream?access_token=" . $access_token;
 	$data = call_api("GET", $url);
+	echo "<pre>";
 	print_r($data);
-	echo $url;
+	echo "</pre>";
 }
 
 function get_course_upcoming($course, $canvas_site, $access_token) {

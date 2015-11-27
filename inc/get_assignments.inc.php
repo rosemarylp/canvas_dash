@@ -8,8 +8,37 @@ if (isset($_GET["course"])) {
 	global $access_token;
 
 	// get_assignments($course, $canvas_site, $access_token);
-	get_course_activity($course, $canvas_site, $access_token);
+	// get_course_activity($course, $canvas_site, $access_token);
 	// get_course_upcoming($course, $canvas_site, $access_token);
+}
+
+if (isset($_GET["course"]) && isset($_GET["include"])) {
+	global $canvas_site;
+	global $access_token;
+	$course = $_GET["course"];
+
+	switch ($_GET["include"]) {
+		case 'info':
+			get_course_activity($course, $canvas_site, $access_token);
+			// get_course_upcoming($course, $canvas_site, $access_token);
+			break;
+
+		case 'quizzes':
+			//code
+			break;
+
+		case 'discussions':
+			//code
+			break;
+
+		case 'assignments':
+			get_assignments($course, $canvas_site, $access_token);
+			break;
+
+		default:
+			# code...
+			break;
+	}
 }
 
  ?>
