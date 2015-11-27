@@ -139,4 +139,11 @@ function get_assignments($course, $canvas_site, $access_token) {
 	echo "</pre>";
 }
 
+function get_discussions($course, $canvas_site, $access_token) {
+	$url = $canvas_site . "/" . "courses/" . $course . "/discussion_topics?access_token=" . $access_token;
+	$data = call_api("GET", $url);
+	$data = json_decode($data);
+	echo "<pre>" . print_r($data) . "</pre>";
+}
+
  ?>

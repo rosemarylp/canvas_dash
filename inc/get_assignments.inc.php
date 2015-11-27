@@ -28,7 +28,7 @@ if (isset($_GET["course"]) && isset($_GET["include"])) {
 			break;
 
 		case 'discussions':
-			//code
+			get_discussions($course, $canvas_site, $access_token);
 			break;
 
 		case 'assignments':
