@@ -126,6 +126,12 @@ function get_course_activity($course, $canvas_site, $access_token) {
 		}
 	}
 	$output .= "</section>";
+	$assignments = get_assignments($data);
+	// $discussions = get_discussions($data);
+	// $quizzes = get_quizzes($data);
+	$output .= $assignments;
+	// $output .= $discussions;
+	// $output .= $quizzes;
 	echo $output;
 }
 
@@ -147,21 +153,45 @@ function get_course_upcoming($course, $canvas_site, $access_token) {
 	echo $output;
 }
 
-function get_assignments($course, $canvas_site, $access_token) {
-	$url = $canvas_site . "/" . "courses/" . $course . "/assignments?access_token=" . $access_token;
-	$data = call_api("GET",$url);
-	echo "<pre>";
-	print_r($data);
-	echo "</pre>";
+function get_assignments($data) {
+	$output = "";
+	$output .= "<section>";
+	$output .= "<h3>Assignments</h3>";
+	$output .= "<h4>Recent Feedback</h4>";
+	for ($i=0; $i<count($data); $i++) {
+		if ($data[$i]->type == "Submission") {
+			if ($data[$i]->submission_type == "online_upload" || $data[$i]->submission_type == "online_url") {
+				$output .= "<section>";
+				$output .= "<h4>";
+				$output .= "<a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a>";
+				$output .= "</h4>";
+				if (property_exists($data[$i], "submission_comments")) {
+					if (count($data[$i]->submission_comments) > 0) {
+						for ($j=0; $j<count($data[$i]->submission_comments); $j++) {
+							$output .= "<p>" . $data[$i]->submission_comments[$j]->comment . "</p>";
+						}
+					}
+				}
+
+				if (property_exists($data[$i], "score")) {
+					$output .= "<p>Score: " . $data[$i]->score . "/" . $data[$i]->assignment->points_possible . "</p>";
+				}
+				$output .= "</section>";
+			}
+			
+		}
+	}
+	$output .= "</section>";
+	return $output;
 }
 
-function get_discussions($course, $canvas_site, $access_token) {
+function get_discussions($data) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/discussion_topics?access_token=" . $access_token;
 	$data = call_api("GET", $url);
 	echo "<pre>" . print_r($data) . "</pre>";
 }
 
-function get_quizzes($course, $canvas_site, $access_token) {
+function get_quizzes($data) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/quizzes?access_token=" . $access_token;
 	$data = call_api("GET", $url);
 	echo "<pre>" . print_r($data) . "</pre>";
