@@ -14,8 +14,7 @@ function call_api($method, $url, $data = false){
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($curl);
     curl_close($curl);
-    // -----ADD LINE to json_decode $result----
-    return $result;
+    return json_decode($result);
 } // end call_api
 
 function get_self() {
@@ -23,7 +22,6 @@ function get_self() {
 	global $access_token;
 	$url = $canvas_site . "/users/self?access_token=" . $access_token;
 	$data = call_api("GET",$url);
-	$data = json_decode($data);
 	$output = "<h2>Welcome, " . $data->name . "</h2>";
 	return $output;
 }
@@ -33,7 +31,6 @@ function get_all_activity() {
 	global $access_token;
 	$url = $canvas_site . "/users/self/activity_stream?access_token=" . $access_token;
 	$data = call_api("GET",$url);
-	$data = json_decode($data);
 	$output = "";
 
 	$output .= "<section>";
@@ -67,7 +64,6 @@ function get_all_upcoming() {
 	global $access_token;
 	$url = $canvas_site . "/users/self/upcoming_events?access_token=" . $access_token;
 	$data = call_api("GET", $url);
-	$data = json_decode($data);
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Upcoming Assignments</h2>";
@@ -92,7 +88,6 @@ function get_courses() {
 	global $access_token;
 	$url = $canvas_site . "/courses?include=total_scores&access_token=" . $access_token;
 	$data = call_api("GET",$url);
-	$data = json_decode($data);
 	$output = "";
 	for ($i=0; $i<count($data); $i++) {
 		if (!property_exists($data[$i], "access_restricted_by_date")) {
@@ -115,7 +110,6 @@ function get_course_activity($course, $canvas_site, $access_token) {
 function get_course_upcoming($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/todo?access_token=" . $access_token;
 	$data = call_api("GET", $url);
-	$data = json_decode($data);
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Upcoming Assignments</h2>";
@@ -134,7 +128,6 @@ function get_course_upcoming($course, $canvas_site, $access_token) {
 function get_assignments($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/assignments?access_token=" . $access_token;
 	$data = call_api("GET",$url);
-	$data = json_decode($data);
 	echo "<pre>";
 	print_r($data);
 	echo "</pre>";
@@ -143,15 +136,12 @@ function get_assignments($course, $canvas_site, $access_token) {
 function get_discussions($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/discussion_topics?access_token=" . $access_token;
 	$data = call_api("GET", $url);
-	$data = json_decode($data);
 	echo "<pre>" . print_r($data) . "</pre>";
 }
 
 function get_quizzes($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/quizzes?access_token=" . $access_token;
 	$data = call_api("GET", $url);
-	$data = json_decode($data);
-	echo $url . "<br>";
 	echo "<pre>" . print_r($data) . "</pre>";
 }
 
