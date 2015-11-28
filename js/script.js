@@ -2,7 +2,7 @@ $('document').ready(function() {
 
 	function get_course_info(course) {
 		var jqxhr = $.ajax({
-			url: "inc/get_assignments.inc.php?include=info&course=" + course,
+			url: "inc/get_assignments.inc.php?course=" + course,
 			method:"GET",
 		}).done(function(data) {
 			$('#single_course_updates').html(data);

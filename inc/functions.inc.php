@@ -32,7 +32,6 @@ function get_all_activity() {
 	$url = $canvas_site . "/users/self/activity_stream?per_page=15&access_token=" . $access_token;
 	$data = call_api("GET",$url);
 	$output = "";
-
 	$output .= "<section>";
 	$output .= "<h2>Recent Updates</h2>";
 	for ($i=0; $i<count($data); $i++) {
@@ -126,9 +125,11 @@ function get_course_activity($course, $canvas_site, $access_token) {
 		}
 	}
 	$output .= "</section>";
+	$upcoming = get_course_upcoming($course, $canvas_site, $access_token);
 	$assignments = get_assignments($data);
 	$discussions = get_discussions($data);
 	$quizzes = get_quizzes($data);
+	$output .= $upcoming;
 	$output .= $assignments;
 	$output .= $discussions;
 	$output .= $quizzes;
