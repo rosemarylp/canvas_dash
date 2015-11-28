@@ -127,10 +127,10 @@ function get_course_activity($course, $canvas_site, $access_token) {
 	}
 	$output .= "</section>";
 	$assignments = get_assignments($data);
-	// $discussions = get_discussions($data);
+	$discussions = get_discussions($data);
 	// $quizzes = get_quizzes($data);
 	$output .= $assignments;
-	// $output .= $discussions;
+	$output .= $discussions;
 	// $output .= $quizzes;
 	echo $output;
 }
@@ -178,7 +178,6 @@ function get_assignments($data) {
 				}
 				$output .= "</section>";
 			}
-			
 		}
 	}
 	$output .= "</section>";
@@ -186,9 +185,32 @@ function get_assignments($data) {
 }
 
 function get_discussions($data) {
-	$url = $canvas_site . "/" . "courses/" . $course . "/discussion_topics?access_token=" . $access_token;
-	$data = call_api("GET", $url);
-	echo "<pre>" . print_r($data) . "</pre>";
+	$output = "";
+	$output .= "<section>";
+	$output .= "<h3>Discussions</h3>";
+	$output .= "<h4>Recent Feedback</h4>";
+	for ($i=0; $i<count($data); $i++) {
+		if ($data[$i]->type == "DiscussionTopic") {
+				$output .= "<section>";
+				$output .= "<h4>";
+				$output .= "<a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a>";
+				$output .= "</h4>";
+				if (property_exists($data[$i], "submission_comments")) {
+					if (count($data[$i]->submission_comments) > 0) {
+						for ($j=0; $j<count($data[$i]->submission_comments); $j++) {
+							$output .= "<p>" . $data[$i]->submission_comments[$j]->comment . "</p>";
+						}
+					}
+				}
+
+				if (property_exists($data[$i], "score")) {
+					$output .= "<p>Score: " . $data[$i]->score . "/" . $data[$i]->assignment->points_possible . "</p>";
+				}
+				$output .= "</section>";
+			}
+		}
+	$output .= "</section>";
+	return $output;
 }
 
 function get_quizzes($data) {
