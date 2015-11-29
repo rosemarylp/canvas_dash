@@ -35,7 +35,7 @@ function get_all_activity() {
 	$output .= "<section>";
 	$output .= "<h2>Recent Updates</h2>";
 	for ($i=0; $i<count($data); $i++) {
-		if ($data[$i]->type == "Submission" || $data[$i]->type == "DiscussionTopic") {
+		if ($data[$i]->type == "Submission" || $data[$i]->type == "DiscussionTopic" && property_exists($data[$i], "workflow_state")) {
 			$output .= "<section>";
 			//Clickable title of assignment
 			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a><h3>";
@@ -105,7 +105,7 @@ function get_course_activity($course, $canvas_site, $access_token) {
 	$output .= "<section>";
 	$output .= "<h2>Recent Updates</h2>";
 	for ($i=0; $i<count($data); $i++) {
-		if ($data[$i]->type == "Submission" || $data[$i]->type == "DiscussionTopic") {
+		if ($data[$i]->type == "Submission" || $data[$i]->type == "DiscussionTopic" && property_exists($data[$i], "workflow_state")) {
 			$output .= "<section>";
 			//Clickable title of assignment
 			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a><h3>";
@@ -191,7 +191,7 @@ function get_discussions($data) {
 	$output .= "<h3>Discussions</h3>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
-		if ($data[$i]->type == "DiscussionTopic") {
+		if ($data[$i]->type == "DiscussionTopic" && property_exists($data[$i], "workflow_state")) {
 				$output .= "<section>";
 				$output .= "<h4>";
 				$output .= "<a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a>";
