@@ -11,9 +11,9 @@
 </head>
 <body>
 	<header>
-		<h1>Canvas Dash</h1>
+		<div><h1>Canvas Dash</h1>
 		<!-- Welcome, {user} -->
-		<?php echo get_self(); ?>
+		<?php echo get_self(); ?></div>
 		<nav>
 			<button id="settings">Settings</button>
 			<button id="log_out">Log Out</button>
@@ -40,36 +40,7 @@
 			</div>
 
 			<div class="container tabbed" id="course_assignments">
-				<section>
-					<h3>Assignments</h3>
-					<h4>
-						<!-- Average - Percentage of Final -->
-					</h4>
-					<div class="container" id="assignments">
-						<!-- Container for recent -->
-						<!-- Container for upcoming -->
-					</div>
-				</section>
-				<section>
-					<h3>Discussions</h3>
-					<h4>
-						<!-- Average - Percentage of Final -->
-					</h4>
-					<div class="container" id="discussions">
-						<!-- Container for recent -->
-						<!-- Container for upcoming -->
-					</div>
-				</section>
-				<section>
-					<h3>Quizzes</h3>
-					<h4>
-						<!-- Average - Percentage of Final -->
-					</h4>
-					<div class="container" id="quizzes">
-						<!-- Container for recent -->
-						<!-- Container for upcoming -->
-					</div>
-				</section>
+
 			<!-- End course_assignments -->
 			</div>
 		<!-- End all_courses -->

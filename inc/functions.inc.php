@@ -156,7 +156,7 @@ function get_course_upcoming($course, $canvas_site, $access_token) {
 
 function get_assignments($data) {
 	$output = "";
-	$output .= "<section>";
+	$output .= "<section id=\"assignments\">";
 	$output .= "<h3>Assignments</h3>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
@@ -187,7 +187,7 @@ function get_assignments($data) {
 
 function get_discussions($data) {
 	$output = "";
-	$output .= "<section>";
+	$output .= "<section id=\"discussions\">";
 	$output .= "<h3>Discussions</h3>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
@@ -216,7 +216,7 @@ function get_discussions($data) {
 
 function get_quizzes($data) {
 	$output = "";
-	$output .= "<section>";
+	$output .= "<section id=\"quizzes\">";
 	$output .= "<h3>Quizzes</h3>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
