@@ -137,17 +137,23 @@ function get_course_activity($course, $canvas_site, $access_token) {
 }
 
 function get_course_upcoming($course, $canvas_site, $access_token) {
-	$url = $canvas_site . "/" . "courses/" . $course . "/todo?access_token=" . $access_token;
+	$url = $canvas_site . "/" . "courses/" . $course . "/assignments?bucket=future&access_token=" . $access_token;
 	$data = call_api("GET", $url);
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Upcoming Assignments</h2>";
 	for ($i=0; $i<count($data); $i++) {
-		$output .= "<section>";
-		$output .= "<h3><a href=\"" . $data[$i]->assignment->html_url . "\">";
-		$output .= $data[$i]->assignment->name . "</a></h3>";
-		$output .= "<h4>Due: " . $data[$i]->assignment->due_at . "</h4>";
-		$output .= "</section>";
+		if ($data[$i]->grading_type == "points" && $data[$i]->has_submitted_submissions == false) {
+			$output .= "<section>";
+			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">";
+			$output .= $data[$i]->name . "</a></h3>";
+			if ($data[$i]->due_at == null) {
+				$output .= "<h4>Due: " . "None" . "</h4>";
+			} else {
+				$output .= "<h4>Due: " . $data[$i]->due_at . "</h4>";
+			}
+			$output .= "</section>";
+		}
 	}
 	$output .= "</section>";
 
