@@ -39,10 +39,6 @@
 				<!-- Container for upcoming assignments in selected course -->
 			</div>
 
-			<div class="container tabbed" id="course_assignments">
-
-			<!-- End course_assignments -->
-			</div>
 		<!-- End all_courses -->
 		</section>
 	</main>

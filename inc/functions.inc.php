@@ -252,4 +252,80 @@ function get_past_quizzes($data) {
 	return $output;
 }
 
+function get_upcoming_assignments($upcoming_data) {
+	$output = "";
+	$output .= "<section>";
+	$output .= "<h3>Upcoming Assignments</h3>";
+	for ($i=0; $i<count($upcoming_data); $i++) {
+		if ($upcoming_data[$i]->grading_type == "points" && $upcoming_data[$i]->has_submitted_submissions == false) {
+
+			$is_assignment = true;
+			for ($j=0; $j<count($upcoming_data[$i]->submission_types); $j++) {
+				if ($upcoming_data[$i]->submission_types[$j] == "discussion_topic" || $upcoming_data[$i]->submission_types[$j] == "online_quiz") {
+					$is_assignment == false;
+				}
+			}
+
+			if ($is_assignment == true) {
+				$output .= "<section>";
+				$output .= "<h4><a href=\"" . $upcoming_data[$i]->html_url . "\">";
+				$output .= $upcoming_data[$i]->name . "</a></h4>";
+				if ($upcoming_data[$i]->due_at == null) {
+					$output .= "<h5>Due: " . "None" . "</h5>";
+				} else {
+					$output .= "<h5>Due: " . $upcoming_data[$i]->due_at . "</h5>";
+				}
+				$output .= "</section>";
+			}
+		}
+	}
+	$output .= "</section>";
+
+	return $output;
+}
+
+function get_upcoming_discussions($upcoming_data) {
+	$output = "";
+	$output .= "<section>";
+	$output .= "<h3>Upcoming Discussions</h3>";
+	for ($i=0; $i<count($upcoming_data); $i++) {
+		if ($upcoming_data[$i]->grading_type == "points" && $upcoming_data[$i]->submission_types[0] == "discussion_topic") {
+			$output .= "<section>";
+			$output .= "<h4><a href=\"" . $upcoming_data[$i]->html_url . "\">";
+			$output .= $upcoming_data[$i]->name . "</a></h4>";
+			if ($upcoming_data[$i]->due_at == null) {
+				$output .= "<h5>Due: " . "None" . "</h5>";
+			} else {
+				$output .= "<h5>Due: " . $upcoming_data[$i]->due_at . "</h5>";
+			}
+			$output .= "</section>";
+		}
+	}
+	$output .= "</section>";
+
+	return $output;
+}
+
+function get_upcoming_quizzes($upcoming_data) {
+	$output = "";
+	$output .= "<section>";
+	$output .= "<h3>Upcoming Quizzes</h3>";
+	for ($i=0; $i<count($upcoming_data); $i++) {
+		if ($upcoming_data[$i]->grading_type == "points" && $upcoming_data[$i]->has_submitted_submissions == false && $upcoming_data[$i]->submission_types[0] == "online_quiz") {
+			$output .= "<section>";
+			$output .= "<h4><a href=\"" . $upcoming_data[$i]->html_url . "\">";
+			$output .= $upcoming_data[$i]->name . "</a></h4>";
+			if ($upcoming_data[$i]->due_at == null) {
+				$output .= "<h5>Due: " . "None" . "</h5>";
+			} else {
+				$output .= "<h5>Due: " . $upcoming_data[$i]->due_at . "</h5>";
+			}
+			$output .= "</section>";
+		}
+	}
+	$output .= "</section>";
+
+	return $output;
+}
+
  ?>
