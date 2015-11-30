@@ -101,66 +101,67 @@ function get_courses() {
 function get_course_activity($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/activity_stream?per_page=15&access_token=" . $access_token;
 	$data = call_api("GET", $url);
+	return $data;
+}
+
+function output_course_activity($activity_data) {
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Recent Updates</h2>";
-	for ($i=0; $i<count($data); $i++) {
-		if ($data[$i]->type == "Submission" || $data[$i]->type == "DiscussionTopic" && property_exists($data[$i], "workflow_state")) {
+	for ($i=0; $i<count($activity_data); $i++) {
+		if ($activity_data[$i]->type == "Submission" || $activity_data[$i]->type == "DiscussionTopic" && property_exists($activity_data[$i], "workflow_state")) {
 			$output .= "<section>";
 			//Clickable title of assignment
-			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a><h3>";
+			$output .= "<h3><a href=\"" . $activity_data[$i]->html_url . "\">" . $activity_data[$i]->title . "</a><h3>";
 			//Output comment
-			if (property_exists($data[$i], "submission_comments")) {
-				if (count($data[$i]->submission_comments) > 0) {
-					for ($j=0; $j<count($data[$i]->submission_comments); $j++) {
-						$output .= "<p>" . $data[$i]->submission_comments[$j]->comment . "</p>";
+			if (property_exists($activity_data[$i], "submission_comments")) {
+				if (count($activity_data[$i]->submission_comments) > 0) {
+					for ($j=0; $j<count($activity_data[$i]->submission_comments); $j++) {
+						$output .= "<p>" . $activity_data[$i]->submission_comments[$j]->comment . "</p>";
 					}
 				}
 			}
 			//Output score and total points possible
-			if (property_exists($data[$i], "score")) {
-				$output .= "<p>Score: " . $data[$i]->score . "/" . $data[$i]->assignment->points_possible . "</p>";
+			if (property_exists($activity_data[$i], "score")) {
+				$output .= "<p>Score: " . $activity_data[$i]->score . "/" . $activity_data[$i]->assignment->points_possible . "</p>";
 			}
 			$output .= "</section>";
 		}
 	}
 	$output .= "</section>";
-	$upcoming = get_course_upcoming($course, $canvas_site, $access_token);
-	$assignments = get_assignments($data);
-	$discussions = get_discussions($data);
-	$quizzes = get_quizzes($data);
-	$output .= $upcoming;
-	$output .= $assignments;
-	$output .= $discussions;
-	$output .= $quizzes;
-	echo $output;
+
+	return $output;
 }
 
 function get_course_upcoming($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/assignments?bucket=future&access_token=" . $access_token;
 	$data = call_api("GET", $url);
+	return $data;
+}
+
+function output_course_upcoming($upcoming_data) {
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Upcoming Assignments</h2>";
-	for ($i=0; $i<count($data); $i++) {
-		if ($data[$i]->grading_type == "points" && $data[$i]->has_submitted_submissions == false) {
+	for ($i=0; $i<count($upcoming_data); $i++) {
+		if ($upcoming_data[$i]->grading_type == "points" && $upcoming_data[$i]->has_submitted_submissions == false) {
 			$output .= "<section>";
-			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">";
-			$output .= $data[$i]->name . "</a></h3>";
-			if ($data[$i]->due_at == null) {
+			$output .= "<h3><a href=\"" . $upcoming_data[$i]->html_url . "\">";
+			$output .= $upcoming_data[$i]->name . "</a></h3>";
+			if ($upcoming_data[$i]->due_at == null) {
 				$output .= "<h4>Due: " . "None" . "</h4>";
 			} else {
-				$output .= "<h4>Due: " . $data[$i]->due_at . "</h4>";
+				$output .= "<h4>Due: " . $upcoming_data[$i]->due_at . "</h4>";
 			}
 			$output .= "</section>";
 		}
 	}
 	$output .= "</section>";
 
-	echo $output;
+	return $output;
 }
 
-function get_assignments($data) {
+function get_past_assignments($data) {
 	$output = "";
 	$output .= "<section id=\"assignments\">";
 	$output .= "<h3>Assignments</h3>";
@@ -191,7 +192,7 @@ function get_assignments($data) {
 	return $output;
 }
 
-function get_discussions($data) {
+function get_past_discussions($data) {
 	$output = "";
 	$output .= "<section id=\"discussions\">";
 	$output .= "<h3>Discussions</h3>";
@@ -220,7 +221,7 @@ function get_discussions($data) {
 	return $output;
 }
 
-function get_quizzes($data) {
+function get_past_quizzes($data) {
 	$output = "";
 	$output .= "<section id=\"quizzes\">";
 	$output .= "<h3>Quizzes</h3>";
