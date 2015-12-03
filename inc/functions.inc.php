@@ -163,8 +163,7 @@ function output_course_upcoming($upcoming_data) {
 
 function get_past_assignments($data) {
 	$output = "";
-	$output .= "<section id=\"assignments\">";
-	$output .= "<h3>Assignments</h3>";
+	$output .= "<section>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
 		if ($data[$i]->type == "Submission") {
@@ -194,8 +193,6 @@ function get_past_assignments($data) {
 
 function get_past_discussions($data) {
 	$output = "";
-	$output .= "<section id=\"discussions\">";
-	$output .= "<h3>Discussions</h3>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
 		if ($data[$i]->type == "DiscussionTopic" && property_exists($data[$i], "workflow_state")) {
@@ -217,14 +214,11 @@ function get_past_discussions($data) {
 				$output .= "</section>";
 			}
 		}
-	$output .= "</section>";
 	return $output;
 }
 
 function get_past_quizzes($data) {
 	$output = "";
-	$output .= "<section id=\"quizzes\">";
-	$output .= "<h3>Quizzes</h3>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
 		if ($data[$i]->type == "Submission") {
@@ -248,14 +242,13 @@ function get_past_quizzes($data) {
 			}
 		}
 	}
-	$output .= "</section>";
 	return $output;
 }
 
 function get_upcoming_assignments($upcoming_data) {
 	$output = "";
 	$output .= "<section>";
-	$output .= "<h3>Upcoming Assignments</h3>";
+	$output .= "<h4>Upcoming Assignments</h4>";
 	for ($i=0; $i<count($upcoming_data); $i++) {
 		if ($upcoming_data[$i]->grading_type == "points" && $upcoming_data[$i]->has_submitted_submissions == false) {
 

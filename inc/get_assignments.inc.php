@@ -1,5 +1,5 @@
 <?php 
-require 'connect.inc.php';
+require_once 'connect.inc.php';
 require_once 'functions.inc.php';
 
 if (isset($_GET["course"])) {
@@ -23,17 +23,39 @@ if (isset($_GET["course"])) {
 
 	$output .= "<div class=\"container tabbed\">";
 
-	$output .= "<div class=\"container\" id=\"assignments\">";
+
+//Buttons Tabs
+
+	$output .= "<div class=\"wrapper-tabs-buttons\">";
+	$output .= "<button id=\"button-assignments class=\"button-tabs\">Assignments</button>";
+	$output .= "<button id=\"button-discussions class=\"button-tabs\">Discussions</button>";
+	$output .= "<button id=\"button-quizzes class=\"button-tabs\">Quizzes</button>";
+
+//Assignments
+	$output .= "<div class=\"container tabs-selected\">";
+
+	$output .= "<h3>Assignments</h3>";
+	$output .= "<div id=\"assignments\">";
+
 	$output .= $past_assignments;
 	$output .= $upcoming_assignments;
 	$output .= "</div>";
-	$output .= "<div class=\"container\" id=\"discussions\">";
+	$output .= "</div>";
+
+	$output .= "<div class=\"container tabs-unselected\">";
+	$output .= "<h3>Discussions</h3>";
+	$output .= "<div id=\"discussions\">";
 	$output .= $past_discussions;
 	$output .= $upcoming_discussions;
 	$output .= "</div>";
-	$output .= "<div class=\"container\" id=\"quizzes\">";
+	$output .= "</div>";
+
+	$output .= "<div class=\"container tabs-unselected\">";
+	$output .= "<h3>Quizzes</h3>";
+	$output .= "<section id=\"quizzes\">";
 	$output .= $past_quizzes;
 	$output .= $upcoming_quizzes;
+	$output .= "</section>";
 	$output .= "</div>";
 
 	$output .= "</div>";

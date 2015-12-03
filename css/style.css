@@ -26,8 +26,14 @@ h1 {
   font-size: 1.6em;
 }
 
+h2 {
+  background: rgba(0,0,0,.5);
+  color: white;
+}
+
 header h2 {
   font-size: 1.3em;
+  background: none;
 }
 
 nav {
@@ -64,6 +70,43 @@ a:hover {
   clear: both;
 }
 
-#all_course_updates {
+.container-tabbed {
+  width: 100%;
+}
+
+#all_course_updates, #single_course_updates {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#all_course_updates section, #single_course_updates section {
+  width: 45%;
+  margin: 0 auto;
+}
+
+.tabs-selected {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+#single_course_updates .tabs-selected div {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+}
+
+#single_course_updates .tabs-selected div section {
+  width: 45%;
+  margin: 0 auto;
+  flex-flow: column wrap;
+}
+
+.tabs-unselected {
+  display: none;
+  width: 100%;
+}
+
+.wrapper-tabs-buttons {
   display: flex;
 }
