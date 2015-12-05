@@ -73,8 +73,8 @@ function get_all_upcoming() {
 		$output .= "</a></h3>";
 
 		$output .= "<p>" . $data[$i]->assignment->description . "</p>";
-
-		$output .= "<h4>Due: " . $data[$i]->assignment->due_at . "</h4>";
+		$due_date = format_date($data[$i]->assignment->due_at);
+		$output .= "<h4>Due: " . $due_date . "</h4>";
 		$output .= "</section>";
 	}
 	$output .= "</section>";
@@ -151,7 +151,8 @@ function output_course_upcoming($upcoming_data) {
 			if ($upcoming_data[$i]->due_at == null) {
 				$output .= "<h4>Due: " . "None" . "</h4>";
 			} else {
-				$output .= "<h4>Due: " . $upcoming_data[$i]->due_at . "</h4>";
+				$due_date = format_date($upcoming_data[$i]->due_at);
+				$output .= "<h4>Due: " . $due_date . "</h4>";
 			}
 			$output .= "</section>";
 		}
@@ -266,7 +267,8 @@ function get_upcoming_assignments($upcoming_data) {
 				if ($upcoming_data[$i]->due_at == null) {
 					$output .= "<h5>Due: " . "None" . "</h5>";
 				} else {
-					$output .= "<h5>Due: " . $upcoming_data[$i]->due_at . "</h5>";
+					$due_date = format_date($upcoming_data[$i]->due_at);
+					$output .= "<h5>Due: " . $due_date . "</h5>";
 				}
 				$output .= "</section>";
 			}
@@ -289,7 +291,8 @@ function get_upcoming_discussions($upcoming_data) {
 			if ($upcoming_data[$i]->due_at == null) {
 				$output .= "<h5>Due: " . "None" . "</h5>";
 			} else {
-				$output .= "<h5>Due: " . $upcoming_data[$i]->due_at . "</h5>";
+				$due_date = format_date($upcoming_data[$i]->due_at);
+				$output .= "<h5>Due: " . $due_date . "</h5>";
 			}
 			$output .= "</section>";
 		}
@@ -311,7 +314,8 @@ function get_upcoming_quizzes($upcoming_data) {
 			if ($upcoming_data[$i]->due_at == null) {
 				$output .= "<h5>Due: " . "None" . "</h5>";
 			} else {
-				$output .= "<h5>Due: " . $upcoming_data[$i]->due_at . "</h5>";
+				$due_date = format_date($upcoming_data[$i]->due_at);
+				$output .= "<h5>Due: " . $due_date . "</h5>";
 			}
 			$output .= "</section>";
 		}
@@ -323,7 +327,7 @@ function get_upcoming_quizzes($upcoming_data) {
 
 function format_date($date) {
 	$date_string = strtotime($date);
-	$formatted_date = date("F jS, Y", $published_date);
+	$formatted_date = date("F jS, Y", $date_string);
 	return $formatted_date;
 }
 
