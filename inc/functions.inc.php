@@ -321,4 +321,10 @@ function get_upcoming_quizzes($upcoming_data) {
 	return $output;
 }
 
+function format_date($date) {
+	$date_string = strtotime($date);
+	$formatted_date = date("F jS, Y", $published_date);
+	return $formatted_date;
+}
+
  ?>
