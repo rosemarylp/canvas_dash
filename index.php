@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="js/script.js"></script>
+
 </head>
 <body>
 	<header>
@@ -22,8 +23,8 @@
 
 	<main>
 		<div class="container" id="all_course_updates">
-			<?php echo get_all_activity(); ?>
-			<?php echo get_all_upcoming(); ?>
+			<?php //echo get_all_activity(); ?>
+			<?php //echo get_all_upcoming(); ?>
 			<!-- Container for recent feedback for ALL courses -->
 			<!-- Container for upcoming assignments in ALL courses -->
 		</div>
