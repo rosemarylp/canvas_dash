@@ -326,8 +326,9 @@ function get_upcoming_quizzes($upcoming_data) {
 }
 
 function format_date($date) {
-	$date_string = strtotime($date);
-	$formatted_date = date("F jS, Y", $date_string);
+	$date = date_create($date);
+	$date_timezone = date_timezone_set($date, timezone_open("America/Los_angeles"));
+	$formatted_date = date_format($date_timezone, "F jS, g:iA");
 	return $formatted_date;
 }
 
