@@ -114,10 +114,14 @@ function output_course_activity($activity_data) {
 		if ($activity_data[$i]->type == "Submission" || $activity_data[$i]->type == "DiscussionTopic" && property_exists($activity_data[$i], "workflow_state")) {
 			$output .= "<section>";
 			//Clickable title of assignment
-			$output .= "<h3><a href=\"" . $activity_data[$i]->html_url . "\">" . $activity_data[$i]->title . "</a><h3>";
+			$output .= "<h3>";
+			$output .= "<a href=\"" . $activity_data[$i]->html_url . "\">" . $activity_data[$i]->title . "</a>";
+			$output .= "</h3>";
 			//Output comment
 			if (property_exists($activity_data[$i], "submission_comments")) {
+
 				if (count($activity_data[$i]->submission_comments) > 0) {
+
 					for ($j=0; $j<count($activity_data[$i]->submission_comments); $j++) {
 						$output .= "<p>" . $activity_data[$i]->submission_comments[$j]->comment . "</p>";
 					}
@@ -125,7 +129,7 @@ function output_course_activity($activity_data) {
 			}
 			//Output score and total points possible
 			if (property_exists($activity_data[$i], "score")) {
-				$output .= "<p>Score: " . $activity_data[$i]->score . "/" . $activity_data[$i]->assignment->points_possible . "</p>";
+				$output .= "<h4>Score: " . $activity_data[$i]->score . "/" . $activity_data[$i]->assignment->points_possible . "</h4>";
 			}
 			$output .= "</section>";
 		}

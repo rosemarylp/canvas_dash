@@ -114,6 +114,10 @@ input[type="radio"]:checked + label {
   margin: 0 auto;
 }
 
+#single_course_updates section section {
+  width: 100%;
+}
+
 .wrapper-tabs-buttons {
   display: flex;
   padding: 0;
