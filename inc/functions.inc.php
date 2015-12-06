@@ -90,9 +90,11 @@ function get_courses() {
 	$output = "";
 	for ($i=0; $i<count($data); $i++) {
 		if (!property_exists($data[$i], "access_restricted_by_date")) {
-			$output .= "<input type=\"radio\" name=\"courses\" value=\"" . $data[$i]->id . "\">";
+			$output .= "<input type=\"radio\" name=\"courses\" id=\"" . $data[$i]->id . "\" value=\"" . $data[$i]->id . "\">";
+			$output .= "<label for=\"" . $data[$i]->id . "\">";
 			$output .= $data[$i]->name;
 			$output .= " (" . $data[$i]->enrollments[0]->computed_current_score . "%)";
+			$output .= "</label>";
 		}
 	}
 	return $output;

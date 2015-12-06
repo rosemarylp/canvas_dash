@@ -68,8 +68,33 @@ a:hover {
   border-bottom: 1px solid rgba(0,0,0,1);
 }
 
+input[type="radio"] {
+  display: none;
+}
+
 .container {
   clear: both;
+}
+
+#course_button_wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  text-align: center;
+}
+
+label {
+  background: #444;
+  color: whitesmoke;
+  padding: 1em;
+  transition: background .3s ease;
+}
+
+label:hover {
+  background: #666;
+}
+
+input[type="radio"]:checked + label {
+  background: #666;
 }
 
 .tabbed {

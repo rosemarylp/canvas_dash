@@ -12,6 +12,7 @@ $(document).ready(function() {
 	$("input:radio[name=courses]").change(function() {
 		var course = $(this).val();
 		get_course_info(course);
+		// $('label[for=' + course + ']').css('background', 'purple');
 	});
 
 	$('#single_course_updates').on('click', '#button-assignments', function() {
