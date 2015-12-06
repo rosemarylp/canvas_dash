@@ -27,7 +27,7 @@ h1 {
 }
 
 h2 {
-  background: rgba(0,0,0,.5);
+  background: darkcyan;
   color: white;
   padding: .5em;
 }
@@ -90,11 +90,12 @@ label {
 }
 
 label:hover {
-  background: #666;
+  background: rebeccapurple;
 }
 
 input[type="radio"]:checked + label {
-  background: #666;
+  background: indigo;
+  border: 1px solid whitesmoke;
 }
 
 .tabbed {
