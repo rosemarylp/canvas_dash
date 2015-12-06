@@ -27,10 +27,9 @@ if (isset($_GET["course"])) {
 //Buttons Tabs
 
 	$output .= "<div class=\"wrapper-tabs-buttons\">";
-	$output .= "<h3 id=\"button-assignments\" class=\"button-tabs\">Assignments</h3>";
-	$output .= "<h3 id=\"button-discussions\" class=\"button-tabs\">Discussions</h3>";
-	$output .= "<h3 id=\"button-quizzes\" class=\"button-tabs\">Quizzes</h3>";
-	$output .= "<div id='fuck'>Fuck you</div>";
+	$output .= "<h3 id=\"button-assignments\" class=\"button-tabs button-selected\">Assignments</h3>";
+	$output .= "<h3 id=\"button-discussions\" class=\"button-tabs button-unselected\">Discussions</h3>";
+	$output .= "<h3 id=\"button-quizzes\" class=\"button-tabs button-unselected\">Quizzes</h3>";
 	$output .= "</div>";
 
 //Assignments
@@ -47,17 +46,18 @@ if (isset($_GET["course"])) {
 
 	// $output .= "<div >";
 	$output .= "<div id=\"discussions\" class=\"container tabs-unselected\">";
-
+	$output .= "<div>";
 	$output .= $past_discussions;
 	$output .= $upcoming_discussions;
 	$output .= "</div>";
-	// $output .= "</div>";
+	$output .= "</div>";
 
 	// $output .= "<div >";
 	$output .= "<div class=\"container tabs-unselected\" id=\"quizzes\">";
-
+	$output .= "<div>";
 	$output .= $past_quizzes;
 	$output .= $upcoming_quizzes;
+	$output .= "</div>";
 	$output .= "</div>";
 
 	// $output .= "</div>";

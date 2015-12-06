@@ -170,9 +170,9 @@ function get_past_assignments($data) {
 		if ($data[$i]->type == "Submission") {
 			if ($data[$i]->submission_type == "online_upload" || $data[$i]->submission_type == "online_url") {
 				$output .= "<section>";
-				$output .= "<h4>";
+				$output .= "<h5>";
 				$output .= "<a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a>";
-				$output .= "</h4>";
+				$output .= "</h5>";
 				if (property_exists($data[$i], "submission_comments")) {
 					if (count($data[$i]->submission_comments) > 0) {
 						for ($j=0; $j<count($data[$i]->submission_comments); $j++) {
@@ -198,9 +198,9 @@ function get_past_discussions($data) {
 	for ($i=0; $i<count($data); $i++) {
 		if ($data[$i]->type == "DiscussionTopic" && property_exists($data[$i], "workflow_state")) {
 				$output .= "<section>";
-				$output .= "<h4>";
+				$output .= "<h5>";
 				$output .= "<a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a>";
-				$output .= "</h4>";
+				$output .= "</h5>";
 				if (property_exists($data[$i], "submission_comments")) {
 					if (count($data[$i]->submission_comments) > 0) {
 						for ($j=0; $j<count($data[$i]->submission_comments); $j++) {
@@ -220,14 +220,15 @@ function get_past_discussions($data) {
 
 function get_past_quizzes($data) {
 	$output = "";
+	$output .= "<section>";
 	$output .= "<h4>Recent Feedback</h4>";
 	for ($i=0; $i<count($data); $i++) {
 		if ($data[$i]->type == "Submission") {
 			if ($data[$i]->submission_type == "online_quiz") {
 				$output .= "<section>";
-				$output .= "<h4>";
+				$output .= "<h5>";
 				$output .= "<a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a>";
-				$output .= "</h4>";
+				$output .= "</h5>";
 				if (property_exists($data[$i], "submission_comments")) {
 					if (count($data[$i]->submission_comments) > 0) {
 						for ($j=0; $j<count($data[$i]->submission_comments); $j++) {
@@ -243,6 +244,7 @@ function get_past_quizzes($data) {
 			}
 		}
 	}
+	$output .= "</section>";
 	return $output;
 }
 
@@ -262,13 +264,13 @@ function get_upcoming_assignments($upcoming_data) {
 
 			if ($is_assignment == true) {
 				$output .= "<section>";
-				$output .= "<h4><a href=\"" . $upcoming_data[$i]->html_url . "\">";
-				$output .= $upcoming_data[$i]->name . "</a></h4>";
+				$output .= "<h5><a href=\"" . $upcoming_data[$i]->html_url . "\">";
+				$output .= $upcoming_data[$i]->name . "</a></h5>";
 				if ($upcoming_data[$i]->due_at == null) {
-					$output .= "<h5>Due: " . "None" . "</h5>";
+					$output .= "<h6>Due: " . "None" . "</h6>";
 				} else {
 					$due_date = format_date($upcoming_data[$i]->due_at);
-					$output .= "<h5>Due: " . $due_date . "</h5>";
+					$output .= "<h6>Due: " . $due_date . "</h6>";
 				}
 				$output .= "</section>";
 			}
@@ -282,17 +284,17 @@ function get_upcoming_assignments($upcoming_data) {
 function get_upcoming_discussions($upcoming_data) {
 	$output = "";
 	$output .= "<section>";
-	$output .= "<h3>Upcoming Discussions</h3>";
+	$output .= "<h4>Upcoming Discussions</h4>";
 	for ($i=0; $i<count($upcoming_data); $i++) {
 		if ($upcoming_data[$i]->grading_type == "points" && $upcoming_data[$i]->submission_types[0] == "discussion_topic") {
 			$output .= "<section>";
-			$output .= "<h4><a href=\"" . $upcoming_data[$i]->html_url . "\">";
-			$output .= $upcoming_data[$i]->name . "</a></h4>";
+			$output .= "<h5><a href=\"" . $upcoming_data[$i]->html_url . "\">";
+			$output .= $upcoming_data[$i]->name . "</a></h5>";
 			if ($upcoming_data[$i]->due_at == null) {
-				$output .= "<h5>Due: " . "None" . "</h5>";
+				$output .= "<h6>Due: " . "None" . "</h6>";
 			} else {
 				$due_date = format_date($upcoming_data[$i]->due_at);
-				$output .= "<h5>Due: " . $due_date . "</h5>";
+				$output .= "<h6>Due: " . $due_date . "</h6>";
 			}
 			$output .= "</section>";
 		}
@@ -305,14 +307,14 @@ function get_upcoming_discussions($upcoming_data) {
 function get_upcoming_quizzes($upcoming_data) {
 	$output = "";
 	$output .= "<section>";
-	$output .= "<h3>Upcoming Quizzes</h3>";
+	$output .= "<h4>Upcoming Quizzes</h4>";
 	for ($i=0; $i<count($upcoming_data); $i++) {
 		if ($upcoming_data[$i]->grading_type == "points" && $upcoming_data[$i]->has_submitted_submissions == false && $upcoming_data[$i]->submission_types[0] == "online_quiz") {
 			$output .= "<section>";
-			$output .= "<h4><a href=\"" . $upcoming_data[$i]->html_url . "\">";
-			$output .= $upcoming_data[$i]->name . "</a></h4>";
+			$output .= "<h5><a href=\"" . $upcoming_data[$i]->html_url . "\">";
+			$output .= $upcoming_data[$i]->name . "</a></h5>";
 			if ($upcoming_data[$i]->due_at == null) {
-				$output .= "<h5>Due: " . "None" . "</h5>";
+				$output .= "<h6>Due: " . "None" . "</h6>";
 			} else {
 				$due_date = format_date($upcoming_data[$i]->due_at);
 				$output .= "<h5>Due: " . $due_date . "</h5>";
