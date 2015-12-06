@@ -38,7 +38,7 @@ function get_all_activity() {
 		if ($data[$i]->type == "Submission" || $data[$i]->type == "DiscussionTopic" && property_exists($data[$i], "workflow_state")) {
 			$output .= "<section>";
 			//Clickable title of assignment
-			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a><h3>";
+			$output .= "<h3><a href=\"" . $data[$i]->html_url . "\">" . $data[$i]->title . "</a></h3>";
 			//Output comment
 			if (property_exists($data[$i], "submission_comments")) {
 				if (count($data[$i]->submission_comments) > 0) {
