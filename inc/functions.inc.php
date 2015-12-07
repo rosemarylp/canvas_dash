@@ -1,6 +1,6 @@
 <?php 
 //Author: Rosemary Perkins
-require 'connect.inc.php';
+require_once 'connect.inc.php';
 $canvas_site = "https://clarkcollege.instructure.com/api/v1";
 
 function call_api($method, $url, $data = false){
