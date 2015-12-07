@@ -74,7 +74,7 @@ function attempt_login($username, $password) {
 } //end attempt_login
 
 function logged_in() {
-	return isset($_SESSION['user_id']);
+	return isset($_SESSION['logged_in']);
 	//check
 } //logged_in
 
