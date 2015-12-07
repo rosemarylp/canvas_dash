@@ -37,15 +37,7 @@ $(document).ready(function() {
 		});
 	}
 
-	function logout() {
-		var url = "inc/logout.inc.php";
-		$.ajax({
-			method: "GET",
-			url: url,
-		}).done(function(data) {
-			$('body').html(data);
-		});
-	}
+
 
 	$('#register_form').submit(function() {
 		event.preventDefault();
@@ -57,9 +49,6 @@ $(document).ready(function() {
 		login();
 	});
 
-	$('header').on('click', '#log_out', function() {
-		event.preventDefault();
-		logout();
-	});
+
 
 });

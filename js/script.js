@@ -7,6 +7,16 @@ function get_course_info(course) {
 	});
 } //end get_assignments
 
+function logout() {
+	var url = "inc/logout.inc.php";
+	$.ajax({
+		method: "GET",
+		url: url,
+	}).done(function(data) {
+		$('body').html(data);
+	});
+}
+
 $('#single_course_updates').on('click', '#button-assignments', function() {
 	$('#button-assignments').addClass('button-selected').removeClass('button-unselected');
 	$('#button-discussions, #button-quizzes').addClass('button-unselected').removeClass('button-selected');
@@ -30,4 +40,3 @@ $('#single_course_updates').on('click', '#button-quizzes', function() {
 	$('#quizzes').addClass('tabs-selected').removeClass('tabs-unselected');
 	$('#discussions, #assignments').removeClass('tabs-selected').addClass('tabs-unselected');
 });
-

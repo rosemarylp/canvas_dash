@@ -10,9 +10,7 @@
 	<title>Canvas Dash</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style.css">
-	<script src="js/script.js"></script>
 	<link rel="stylesheet" href="css/landing_style.css">
-	<script src="js/login_reg_script.js"></script>
 
 </head>
 	<?php 

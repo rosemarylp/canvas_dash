@@ -1,4 +1,5 @@
 <body>
+<script src="js/login_reg_script.js"></script>
 	<header>
 		<h1>Welcome to Canvas Dash</h1>
 	</header>

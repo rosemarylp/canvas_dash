@@ -1,4 +1,6 @@
 <body>
+<script src="js/script.js"></script>
+
 	<header>
 		<div><h1>Canvas Dash</h1>
 		<!-- Welcome, {user} -->
@@ -6,6 +8,12 @@
 		<nav>
 			<button id="settings">Settings</button>
 			<button id="log_out">Log Out</button>
+			<script>
+				$('#log_out').click(function() {
+					event.preventDefault();
+					logout();
+				});
+			</script>
 		</nav>
 	</header>
 
