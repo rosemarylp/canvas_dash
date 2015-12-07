@@ -345,19 +345,19 @@ function format_date($date) {
 	return $formatted_date;
 }
 
-function get_records($connection, $sql, $parameters) {
-	try {
-		$stmt = $connection->prepare($sql);
-
-		$stmt->setFetchMode (PDO::FETCH_ASSOC);
-		$stmt->execute($parameters);
-		//returns associative array
-		return $stmt->fetchAll();
-	} catch (Exception $e) {
-		echo '"error":"' . $e->getCode() . '","text":"' . $e->getMessage() . '"';
-		exit;
-	}
-} //end getRecordset
+    function get_records($connection, $sql, $parameters) {
+        //Query the database based on the information requested
+    	try {
+    		$stmt = $connection->prepare($sql);
+			$stmt->setFetchMode (PDO::FETCH_ASSOC);
+			$stmt->execute($parameters);
+			//returns associative array
+    		return $stmt;
+    	} catch (Exception $e) {
+    		echo '"error":"' . $e->getCode() . '","text":"' . $e->getMessage() . '"';
+    		exit;
+    	}
+    } //end get_records
 
 function write_records($connection, $sql, $parameters) {
 	try {

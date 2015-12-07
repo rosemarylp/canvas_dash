@@ -1,6 +1,6 @@
 <?php require_once 'inc/session.inc.php'; ?>
 <?php require_once 'inc/functions.inc.php'; ?>
-<?php require_once 'inc/functions_login_reg.inc.php'; ?>
+<?php require_once 'inc/check_login.php'; ?>
 
 <?php 
 
