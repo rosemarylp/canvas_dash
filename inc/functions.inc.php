@@ -345,4 +345,30 @@ function format_date($date) {
 	return $formatted_date;
 }
 
+function get_records($connection, $sql, $parameters) {
+	try {
+		$stmt = $connection->prepare($sql);
+
+		$stmt->setFetchMode (PDO::FETCH_ASSOC);
+		$stmt->execute($parameters);
+		//returns associative array
+		return $stmt->fetchAll();
+	} catch (Exception $e) {
+		echo '"error":"' . $e->getCode() . '","text":"' . $e->getMessage() . '"';
+		exit;
+	}
+} //end getRecordset
+
+function write_records($connection, $sql, $parameters) {
+	try {
+		$stmt = $connection->prepare($sql);
+		$stmt->execute($parameters);
+		return $stmt;
+	}
+	catch (Exception $e) {
+		echo '"error":"' . $e->getCode() . '","text:"' . $e->getMessage() . '"';
+		exit;
+	}
+}
+
  ?>
