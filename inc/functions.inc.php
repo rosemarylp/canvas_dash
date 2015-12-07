@@ -142,6 +142,11 @@ function output_course_activity($activity_data) {
 function get_course_upcoming($course, $canvas_site, $access_token) {
 	$url = $canvas_site . "/" . "courses/" . $course . "/assignments?bucket=future&access_token=" . $access_token;
 	$data = call_api("GET", $url);
+	//source: http://stackoverflow.com/questions/7127764/sort-array-of-objects-by-date-field
+	usort($data, function($a, $b) {
+		return strtotime($a->due_at) - strtotime($b->due_at);
+	});
+
 	return $data;
 }
 
