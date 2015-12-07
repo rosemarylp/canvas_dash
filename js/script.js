@@ -9,6 +9,16 @@ $(document).ready(function() {
 		});
 	} //end get_assignments
 
+	function logout() {
+		var url = "inc/logout.inc.php";
+		$.ajax({
+			method: "GET",
+			url: url,
+		}).done(function(data) {
+			$('html').html(data);
+		});
+	}
+
 	$("input:radio[name=courses]").change(function() {
 		var course = $(this).val();
 		get_course_info(course);
@@ -38,4 +48,10 @@ $(document).ready(function() {
 		$('#quizzes').addClass('tabs-selected').removeClass('tabs-unselected');
 		$('#discussions, #assignments').removeClass('tabs-selected').addClass('tabs-unselected');
 	});
+
+	$('header').on('click', '#log_out', function() {
+		event.preventDefault();
+		logout();
+	});
+
 });
