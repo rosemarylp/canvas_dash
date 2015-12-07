@@ -13,6 +13,7 @@
 	<script src="js/script.js"></script>
 	<link rel="stylesheet" href="css/landing_style.css">
 	<script src="js/login_reg_script.js"></script>
+
 </head>
 	<?php 
 	if (logged_in()) {

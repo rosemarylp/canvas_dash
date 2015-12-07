@@ -22,6 +22,12 @@
 			<div id="course_button_wrapper">
 				<!-- Buttons for each course -->
 				<?php echo get_courses(); ?>
+				<script>
+				$("input:radio[name=courses]").change(function() {
+					var course = $(this).val();
+					get_course_info(course);
+				});
+				</script>
 			</div>
 			<div class="container" id="single_course_updates">
 				<!-- Container for recent feedback for selected course -->
