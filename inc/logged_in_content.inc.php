@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- Author: Rosemary Perkins -->
-<head>
-	<meta charset="UTF-8">
-	<title>Canvas Dash</title>
-	<link rel="stylesheet" href="css/style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="js/script.js"></script>
-
-</head>
 <body>
 	<header>
 		<div><h1>Canvas Dash</h1>

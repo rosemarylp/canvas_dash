@@ -1,71 +1,28 @@
-*, *:before, *:after {
-  box-sizing: border-box; }
-
-html {
-  height: 100%; }
-
-body {
-  margin: 0;
-  height: 100%;
-  position: relative;
-  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-  background-color: rgba(255, 87, 34, 0);
-}
-
-header {
-  background: #232323;
-  margin: 0;
-  padding: .8em;
-  color: #E1ECF9;
-  position: relative;
-}
-
-h1 {
-  padding: 0;
-  margin: 0;
-  font-size: 1.6em;
-}
-
-h2 {
-  background: darkcyan;
-  color: white;
-  padding: .5em;
+.login_reg h2 {
   margin-bottom: 0;
 }
 
-main {
+main.login_reg {
 	padding: 2em;
-	clear: both;
   display: flex;
   justify-content: space-around;
 }
 
-a {
-  color: #000;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0,0,0,0);
-  transition: border-bottom .3s ease;
-}
-
-a:hover {
-  border-bottom: 1px solid rgba(0,0,0,1);
-}
-
-section {
+.login_reg section {
   width: 45%;
 }
 
-form {
+.login_reg form {
   display: flex;
   flex-flow: column wrap;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+.login_reg input[type="text"], .login_reg input[type="password"], .login_reg input[type="email"] {
   padding: .5em;
   margin-bottom: 1em;
 }
 
-input[type="submit"] {
+.login_reg input[type="submit"] {
   align-self: center;
   padding: .5em 1.5em;
   background: sienna;
@@ -73,7 +30,7 @@ input[type="submit"] {
   border: none;
 }
 
-label {
+.login_reg label {
   background: rebeccapurple;
   color: whitesmoke;
   padding: .4em;
