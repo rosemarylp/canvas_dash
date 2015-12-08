@@ -11,7 +11,7 @@ unset($_SESSION["logged_in"]);
 // unset($_SESSION["theme"]);
 unset($_SESSION["username"]);
 
-$content = include 'login_page.inc.php';
+$content = include 'layout/login_page.inc.php';
 
 echo $content;
 
