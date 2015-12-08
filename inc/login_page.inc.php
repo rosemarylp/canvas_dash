@@ -1,9 +1,12 @@
+<!-- This is what the user will see if they are not logged in -->
+<!-- When they log in, it will be replaced with the Canvas content -->
 <body>
 <script src="js/login_reg_script.js"></script>
 <div class="loading"></div>
 
 	<header>
 		<h1>Welcome to Canvas Dash</h1>
+		<h2 id="message"></h2>
 	</header>
 
 	<main class="login_reg">

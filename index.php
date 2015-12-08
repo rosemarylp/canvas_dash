@@ -16,9 +16,9 @@
 </head>
 	<?php 
 	if (logged_in()) {
-		include 'inc/logged_in_content.inc.php';
+		include 'inc/layout/logged_in_content.inc.php';
 	} else {
-		include 'inc/login_page.inc.php';
+		include 'inc/layout/login_page.inc.php';
 	}
 
 	 ?>

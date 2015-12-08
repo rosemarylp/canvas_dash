@@ -18,6 +18,7 @@ function call_api($method, $url, $data = false){
 } // end call_api
 
 function get_self() {
+	//Get data about this user
 	global $canvas_site;
 	global $access_token;
 	$url = $canvas_site . "/users/self?access_token=" . $access_token;
@@ -27,6 +28,7 @@ function get_self() {
 }
 
 function get_all_activity() {
+	//Get recent feedback in ALL courses
 	global $canvas_site;
 	global $access_token;
 	$url = $canvas_site . "/users/self/activity_stream?per_page=15&access_token=" . $access_token;
@@ -61,6 +63,7 @@ function get_all_activity() {
 	if ($content_exists) {
 		return $output;
 	} else {
+		//If there isn't any recent feedback, give a message
 		$output = "<section>";
 		$output .= "<h2>Recent Updates</h2>";
 		$output .= "<h3>No New Updates</h3>";
@@ -70,6 +73,7 @@ function get_all_activity() {
 }
 
 function get_all_upcoming() {
+	//Get upcoming assignments for ALL courses
 	global $canvas_site;
 	global $access_token;
 	$url = $canvas_site . "/users/self/upcoming_events?access_token=" . $access_token;
@@ -110,6 +114,7 @@ function get_courses() {
 	$output = "";
 	$content_exists = FALSE;
 	for ($i=0; $i<count($data); $i++) {
+		//Only get current courses
 		if (!property_exists($data[$i], "access_restricted_by_date")) {
 			$content_exists = TRUE;
 			$output .= "<input type=\"radio\" name=\"courses\" id=\"" . $data[$i]->id . "\" value=\"" . $data[$i]->id . "\">";
@@ -128,12 +133,14 @@ function get_courses() {
 }
 
 function get_course_activity($course, $canvas_site, $access_token) {
+	//get feedback for this specific course
 	$url = $canvas_site . "/" . "courses/" . $course . "/activity_stream?per_page=15&access_token=" . $access_token;
 	$data = call_api("GET", $url);
 	return $data;
 }
 
 function output_course_activity($activity_data) {
+	//Output the course activity returned by get_course_activity
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Recent Updates</h2>";
@@ -176,9 +183,11 @@ function output_course_activity($activity_data) {
 }
 
 function get_course_upcoming($course, $canvas_site, $access_token) {
+	//get upcoming assignments for this specific course
 	$url = $canvas_site . "/" . "courses/" . $course . "/assignments?bucket=future&access_token=" . $access_token;
 	$data = call_api("GET", $url);
 	//source: http://stackoverflow.com/questions/7127764/sort-array-of-objects-by-date-field
+	//Sort assignments by due date
 	usort($data, function($a, $b) {
 		return strtotime($a->due_at) - strtotime($b->due_at);
 	});
@@ -187,6 +196,7 @@ function get_course_upcoming($course, $canvas_site, $access_token) {
 }
 
 function output_course_upcoming($upcoming_data) {
+	//output data returned by get_course_upcoming
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Upcoming Assignments</h2>";
@@ -200,6 +210,7 @@ function output_course_upcoming($upcoming_data) {
 			if ($upcoming_data[$i]->due_at == null) {
 				$output .= "<h4>Due: " . "None" . "</h4>";
 			} else {
+				//Change default formatting returned by API to: December 7th, 6:00PM local time
 				$due_date = format_date($upcoming_data[$i]->due_at);
 				$output .= "<h4>Due: " . $due_date . "</h4>";
 			}
@@ -220,6 +231,7 @@ function output_course_upcoming($upcoming_data) {
 }
 
 function get_past_assignments($data) {
+	//Using course data, filter out assignment feedback
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h4>Recent Feedback</h4>";
@@ -261,6 +273,7 @@ function get_past_assignments($data) {
 }
 
 function get_past_discussions($data) {
+	//Using course data, filter out discussion feedback
 	$output = "";
 	$output .= "<h4>Recent Feedback</h4>";
 	$content_exists = FALSE;
@@ -297,6 +310,7 @@ function get_past_discussions($data) {
 }
 
 function get_past_quizzes($data) {
+	//using course data, filter out quiz feedback
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h4>Recent Feedback</h4>";
@@ -337,6 +351,7 @@ function get_past_quizzes($data) {
 }
 
 function get_upcoming_assignments($upcoming_data) {
+	//Filter out upcoming assignments
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h4>Upcoming Assignments</h4>";
@@ -378,6 +393,7 @@ function get_upcoming_assignments($upcoming_data) {
 }
 
 function get_upcoming_discussions($upcoming_data) {
+	//Filter out upcoming discussions
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h4>Upcoming Discussions</h4>";
@@ -444,6 +460,7 @@ function get_upcoming_quizzes($upcoming_data) {
 }
 
 function format_date($date) {
+	//Change date format to: December 7th, 6:00PM Pacific time
 	$date = date_create($date);
 	$date_timezone = date_timezone_set($date, timezone_open("America/Los_angeles"));
 	$formatted_date = date_format($date_timezone, "F jS, g:iA");

@@ -89,12 +89,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($found_user) {
 		//The login was successful - set session variables
 		$_SESSION["username"] = $found_user["username"];
-		$_SESSION["name"] = $found_user["name"];
-		$_SESSION["preferred_name"] = $found_user["preferred_name"];
-		$_SESSION["theme"] = $found_user["theme"];
+		//To use in later version
+		// $_SESSION["name"] = $found_user["name"];
+		//To use in later version
+		// $_SESSION["preferred_name"] = $found_user["preferred_name"];
+		//To use in later version
+		// $_SESSION["theme"] = $found_user["theme"];
 		$_SESSION["logged_in"] = TRUE;
 
-		$content = include 'logged_in_content.inc.php';
+		$content = include 'layout/logged_in_content.inc.php';
 
 		echo $content;
 	}

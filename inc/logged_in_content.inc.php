@@ -1,13 +1,15 @@
 <body>
-
+<!-- This is what the user will see when they are logged in -->
 	<header>
 		<div><h1>Canvas Dash</h1>
 		<!-- Welcome, {user} -->
 		<?php echo get_self(); ?></div>
 		<nav>
-			<button id="settings">Settings</button>
+			<!-- This button will be used in later versions -->
+			<!-- <button id="settings">Settings</button> -->
 			<button id="log_out">Log Out</button>
 			<script>
+				// Calls function to log out of current user
 				$('#log_out').click(function() {
 					event.preventDefault();
 					logout();
@@ -15,7 +17,7 @@
 			</script>
 		</nav>
 	</header>
-
+	<!-- Loading spinner -->
 	<div class="loading"></div>
 
 	<main>

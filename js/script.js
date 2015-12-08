@@ -19,6 +19,9 @@ function logout() {
 	});
 }
 
+//TABS
+//On click, change classes of tabs to show correct content
+
 $('#single_course_updates').on('click', '#button-assignments', function() {
 	$('#button-assignments').addClass('button-selected').removeClass('button-unselected');
 	$('#button-discussions, #button-quizzes').addClass('button-unselected').removeClass('button-selected');

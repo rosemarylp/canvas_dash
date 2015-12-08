@@ -7,9 +7,11 @@ if (isset($_GET["course"])) {
 	global $access_token;
 	$course = $_GET["course"];
 
+	//Get the course upcoming and past assignment data
 	$course_activity_data = get_course_activity($course, $canvas_site, $access_token);
 	$upcoming_data = get_course_upcoming($course, $canvas_site, $access_token);
 
+	//Filter assignment data based on assignment type, append to $output
 	$past_assignments = get_past_assignments($course_activity_data);
 	$past_discussions = get_past_discussions($course_activity_data);
 	$past_quizzes = get_past_quizzes($course_activity_data);
@@ -32,9 +34,7 @@ if (isset($_GET["course"])) {
 	$output .= "<h3 id=\"button-quizzes\" class=\"button-tabs button-unselected\">Quizzes</h3>";
 	$output .= "</div>";
 
-//Assignments
-	// $output .= "<div class=\"container tabs-selected\">";
-
+//Build assignment tabs
 	$output .= "<div class=\"container tabs-selected\" id=\"assignments\">";
 
 	$output .= "<div>";
@@ -42,9 +42,7 @@ if (isset($_GET["course"])) {
 	$output .= $upcoming_assignments;
 	$output .= "</div>";
 	$output .= "</div>";
-	// $output .= "</div>";
 
-	// $output .= "<div >";
 	$output .= "<div id=\"discussions\" class=\"container tabs-unselected\">";
 	$output .= "<div>";
 	$output .= $past_discussions;
@@ -52,15 +50,12 @@ if (isset($_GET["course"])) {
 	$output .= "</div>";
 	$output .= "</div>";
 
-	// $output .= "<div >";
 	$output .= "<div class=\"container tabs-unselected\" id=\"quizzes\">";
 	$output .= "<div>";
 	$output .= $past_quizzes;
 	$output .= $upcoming_quizzes;
 	$output .= "</div>";
 	$output .= "</div>";
-
-	// $output .= "</div>";
 
 	echo $output;
 }
