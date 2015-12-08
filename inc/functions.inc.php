@@ -108,8 +108,10 @@ function get_courses() {
 	$url = $canvas_site . "/courses?include=total_scores&access_token=" . $access_token;
 	$data = call_api("GET",$url);
 	$output = "";
+	$content_exists = FALSE;
 	for ($i=0; $i<count($data); $i++) {
 		if (!property_exists($data[$i], "access_restricted_by_date")) {
+			$content_exists = TRUE;
 			$output .= "<input type=\"radio\" name=\"courses\" id=\"" . $data[$i]->id . "\" value=\"" . $data[$i]->id . "\">";
 			$output .= "<label for=\"" . $data[$i]->id . "\">";
 			$output .= $data[$i]->name;
@@ -117,7 +119,12 @@ function get_courses() {
 			$output .= "</label>";
 		}
 	}
-	return $output;
+
+	if ($content_exists) {
+		return $output;
+	} else {
+		$output = "<div>No Courses Available</div>";
+	}
 }
 
 function get_course_activity($course, $canvas_site, $access_token) {
@@ -130,8 +137,10 @@ function output_course_activity($activity_data) {
 	$output = "";
 	$output .= "<section>";
 	$output .= "<h2>Recent Updates</h2>";
+	$content_exists = FALSE;
 	for ($i=0; $i<count($activity_data); $i++) {
 		if ($activity_data[$i]->type == "Submission" || $activity_data[$i]->type == "DiscussionTopic" && property_exists($activity_data[$i], "workflow_state")) {
+			$content_exists = TRUE;
 			$output .= "<section>";
 			//Clickable title of assignment
 			$output .= "<h3>";
@@ -155,8 +164,15 @@ function output_course_activity($activity_data) {
 		}
 	}
 	$output .= "</section>";
-
-	return $output;
+	if ($content_exists) {
+		return $output;
+	} else {
+		$output .= "<section>";
+		$output .= "<h2>Recent Updates</h2>";
+		$output .= "<h3>No New Updates</h3>";
+		$output .= "</section>";
+		return $output;
+	}
 }
 
 function get_course_upcoming($course, $canvas_site, $access_token) {
