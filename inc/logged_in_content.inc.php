@@ -16,6 +16,8 @@
 		</nav>
 	</header>
 
+	<div class="loading"></div>
+
 	<main>
 		<div class="container" id="all_course_updates">
 			<?php echo get_all_activity(); ?>
