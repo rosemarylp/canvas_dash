@@ -1,5 +1,4 @@
 <body>
-<script src="js/script.js"></script>
 
 	<header>
 		<div><h1>Canvas Dash</h1>
@@ -45,5 +44,7 @@
 		<!-- End all_courses -->
 		</section>
 	</main>
+	<script src="js/script.js"></script>
+
 </body>
 </html>
