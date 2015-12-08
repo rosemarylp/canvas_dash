@@ -8,8 +8,8 @@ $(document).ready(function() {
 			url: url,
 			data: $('#register_form').serialize()
 		}).done(function() {
-			$('.loading').hide();
-			$('#register_form').hide();
+			$('.loading').fadeOut();
+			$('.register_container').fadeOut();
 		});
 	}
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
 			url: url,
 			data: $('#login_form').serialize()
 		}).done(function(content) {
-			$('.loading').hide();
+			$('.loading').fadeOut();
 			$('body').html(content);
 		});
 	}

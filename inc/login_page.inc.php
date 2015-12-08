@@ -7,7 +7,7 @@
 	</header>
 
 	<main class="login_reg">
-		<section>
+		<section class="login_container">
 			<h2>Been Here Before?</h2>
 			<form id="login_form">
 				<h3>Log In</h3>
@@ -20,7 +20,7 @@
 				<input type="submit" name="submit" id="login_submit">
 			</form>
 		</section>
-		<section>
+		<section class="register_container">
 			<h2>New to Canvas Dash?</h2>
 			<form id="register_form">
 				<h3>Create an Account:</h3>

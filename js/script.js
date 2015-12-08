@@ -23,22 +23,22 @@ $('#single_course_updates').on('click', '#button-assignments', function() {
 	$('#button-assignments').addClass('button-selected').removeClass('button-unselected');
 	$('#button-discussions, #button-quizzes').addClass('button-unselected').removeClass('button-selected');
 
-	$('#assignments').addClass('tabs-selected').removeClass('tabs-unselected');
-	$('#discussions, #quizzes').removeClass('tabs-selected').addClass('tabs-unselected');
+	$('#discussions, #quizzes').removeClass('tabs-selected').fadeOut().addClass('tabs-unselected');
+	$('#assignments').addClass('tabs-selected').fadeIn().removeClass('tabs-unselected');
 });
 
 $('#single_course_updates').on('click', '#button-discussions', function() {
 	$('#button-discussions').addClass('button-selected').removeClass('button-unselected');
 	$('#button-assignments, #button-quizzes').addClass('button-unselected').removeClass('button-selected');
 
-	$('#discussions').addClass('tabs-selected').removeClass('tabs-unselected');
-	$('#assignments, #quizzes').removeClass('tabs-selected').addClass('tabs-unselected');
+	$('#assignments, #quizzes').removeClass('tabs-selected').fadeOut().addClass('tabs-unselected');
+	$('#discussions').addClass('tabs-selected').fadeIn().removeClass('tabs-unselected');
 });
 
 $('#single_course_updates').on('click', '#button-quizzes', function() {
 	$('#button-quizzes').addClass('button-selected').removeClass('button-unselected');
 	$('#button-assignments, #button-discussions').addClass('button-unselected').removeClass('button-selected');
 
-	$('#quizzes').addClass('tabs-selected').removeClass('tabs-unselected');
-	$('#discussions, #assignments').removeClass('tabs-selected').addClass('tabs-unselected');
+	$('#discussions, #assignments').removeClass('tabs-selected').fadeOut().addClass('tabs-unselected');
+	$('#quizzes').addClass('tabs-selected').fadeIn().removeClass('tabs-unselected');
 });
