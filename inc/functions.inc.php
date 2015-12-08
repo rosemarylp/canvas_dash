@@ -402,7 +402,7 @@ function get_upcoming_discussions($upcoming_data) {
 	if ($content_exists) {
 		return $output;
 	} else {
-		$output .= "<section>";
+		$output = "<section>";
 		$output .= "<h4>Upcoming Discussions</h4>";
 		$output .= "<h5>No upcoming discussions</h5>";
 		$output .= "</section>";
@@ -435,7 +435,7 @@ function get_upcoming_quizzes($upcoming_data) {
 	if ($content_exists) {
 		return $output;
 	} else {
-		$output .= "<section>";
+		$output = "<section>";
 		$output .= "<h4>Upcoming Quizzes</h4>";
 		$output .= "<h5>No upcoming quizzes</h5>";
 		$output .= "</section>";
