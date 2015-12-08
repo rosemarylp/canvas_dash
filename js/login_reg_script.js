@@ -1,20 +1,5 @@
 $(document).ready(function() {
 
-	function get_course_info(course) {
-		var jqxhr = $.ajax({
-			url: "inc/get_assignments.inc.php?course=" + course,
-			method:"GET",
-		}).done(function(data) {
-			$('#single_course_updates').html(data);
-		});
-	} //end get_assignments
-
-	function process_form(form_id) {
-		//Get the values from the form and put them in an associative array
-		var parameters = $(form_id).serialize();
-		return parameters;
-	} //end process_form
-
 	function register_user() {
 		var url = "inc/process_user.php";
 		$.ajax({
@@ -36,8 +21,6 @@ $(document).ready(function() {
 			$('body').html(content);
 		});
 	}
-
-
 
 	$('#register_form').submit(function() {
 		event.preventDefault();
